@@ -1,0 +1,44 @@
+POKEDEX
+--
+nationalDexNumber INT PK
+name VARCHAR PK
+description VARCHAR
+weight INT
+height INT
+
+STATS
+--
+name VARCHAR PK FK - POKEDEX.name
+baseStat INT
+healthPoints INT
+attack INT
+defense INT
+specialAttack INT
+specialDefense INT
+speed INT
+
+ABILITIES
+--
+name VARCHAR PK FK - POKEDEX.name
+ability1 VARCHAR
+ability2 VARCHAR
+ability3 VARCHAR
+hiddenAbility VARCHAR
+
+HELD-ITEMS
+--
+name VARCHAR PK
+item1 VARCHAR
+item2 VARCHAR
+item3 VARCHAR
+
+POPULAR-MOVESETS
+--
+name VARCHAR PK
+nature VARCHAR
+ability VARCHAR
+heldItem VARCHAR
+move1 VARCHAR
+move2 VARCHAR
+move3 VARCHAR
+move4 VARCHAR
