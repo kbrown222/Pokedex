@@ -3,11 +3,11 @@
 
 
 CREATE TABLE "POKEDEX" (
-    "nationalDexNumber" INT   NOT NULL,
+    "nationalDexNumber" INT   NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "description" VARCHAR   NOT NULL,
-    "weight" INT   NOT NULL,
-    "height" INT   NOT NULL,
+    "weight" FLOAT,
+    "height" FLOAT,
     "type1" VARCHAR   NOT NULL,
     "type2" VARCHAR   NOT NULL,
     "evolvesFrom" VARCHAR   NOT NULL,
