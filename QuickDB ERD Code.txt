@@ -5,10 +5,14 @@ name VARCHAR PK
 description VARCHAR
 weight INT
 height INT
+type1 VARCHAR
+type2 VARCHAR
+evolvesFrom VARCHAR
 
 STATS
 --
-name VARCHAR PK FK - POKEDEX.name
+nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
+name VARCHAR
 baseStat INT
 healthPoints INT
 attack INT
@@ -19,7 +23,8 @@ speed INT
 
 ABILITIES
 --
-name VARCHAR PK FK - POKEDEX.name
+nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
+name VARCHAR
 ability1 VARCHAR
 ability2 VARCHAR
 ability3 VARCHAR

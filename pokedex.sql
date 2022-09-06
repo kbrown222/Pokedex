@@ -8,12 +8,16 @@ CREATE TABLE "POKEDEX" (
     "description" VARCHAR   NOT NULL,
     "weight" INT   NOT NULL,
     "height" INT   NOT NULL,
+    "type1" VARCHAR   NOT NULL,
+    "type2" VARCHAR   NOT NULL,
+    "evolvesFrom" VARCHAR   NOT NULL,
     CONSTRAINT "pk_POKEDEX" PRIMARY KEY (
         "nationalDexNumber","name"
      )
 );
 
 CREATE TABLE "STATS" (
+    "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
     "baseStat" INT   NOT NULL,
     "healthPoints" INT   NOT NULL,
@@ -23,18 +27,19 @@ CREATE TABLE "STATS" (
     "specialDefense" INT   NOT NULL,
     "speed" INT   NOT NULL,
     CONSTRAINT "pk_STATS" PRIMARY KEY (
-        "name"
+        "nationalDexNumber"
      )
 );
 
 CREATE TABLE "ABILITIES" (
+    "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
     "ability1" VARCHAR   NOT NULL,
     "ability2" VARCHAR   NOT NULL,
     "ability3" VARCHAR   NOT NULL,
     "hiddenAbility" VARCHAR   NOT NULL,
     CONSTRAINT "pk_ABILITIES" PRIMARY KEY (
-        "name"
+        "nationalDexNumber"
      )
 );
 
@@ -62,9 +67,9 @@ CREATE TABLE "POPULAR-MOVESETS" (
      )
 );
 
-ALTER TABLE "STATS" ADD CONSTRAINT "fk_STATS_name" FOREIGN KEY("name")
-REFERENCES "POKEDEX" ("name");
+ALTER TABLE "STATS" ADD CONSTRAINT "fk_STATS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
 
-ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_name" FOREIGN KEY("name")
-REFERENCES "POKEDEX" ("name");
+ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
 
