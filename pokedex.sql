@@ -3,11 +3,11 @@
 
 
 CREATE TABLE "POKEDEX" (
-    "nationalDexNumber" INT   NOT NULL UNIQUE,
+    "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
     "description" VARCHAR   NOT NULL,
-    "weight" FLOAT,
-    "height" FLOAT,
+    "weight" INT   NOT NULL,
+    "height" INT   NOT NULL,
     "type1" VARCHAR   NOT NULL,
     "type2" VARCHAR   NOT NULL,
     "evolvesFrom" VARCHAR   NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE "STATS" (
     "specialDefense" INT   NOT NULL,
     "speed" INT   NOT NULL,
     CONSTRAINT "pk_STATS" PRIMARY KEY (
-        "nationalDexNumber"
+        "nationalDexNumber","name"
      )
 );
 
@@ -39,21 +39,23 @@ CREATE TABLE "ABILITIES" (
     "ability3" VARCHAR   NOT NULL,
     "hiddenAbility" VARCHAR   NOT NULL,
     CONSTRAINT "pk_ABILITIES" PRIMARY KEY (
-        "nationalDexNumber"
+        "nationalDexNumber","name"
      )
 );
 
 CREATE TABLE "HELD-ITEMS" (
+    "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
     "item1" VARCHAR   NOT NULL,
     "item2" VARCHAR   NOT NULL,
     "item3" VARCHAR   NOT NULL,
     CONSTRAINT "pk_HELD-ITEMS" PRIMARY KEY (
-        "name"
+        "nationalDexNumber","name"
      )
 );
 
 CREATE TABLE "POPULAR-MOVESETS" (
+    "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
     "nature" VARCHAR   NOT NULL,
     "ability" VARCHAR   NOT NULL,
@@ -63,7 +65,7 @@ CREATE TABLE "POPULAR-MOVESETS" (
     "move3" VARCHAR   NOT NULL,
     "move4" VARCHAR   NOT NULL,
     CONSTRAINT "pk_POPULAR-MOVESETS" PRIMARY KEY (
-        "name"
+        "nationalDexNumber","name"
      )
 );
 
@@ -71,5 +73,11 @@ ALTER TABLE "STATS" ADD CONSTRAINT "fk_STATS_nationalDexNumber" FOREIGN KEY("nat
 REFERENCES "POKEDEX" ("nationalDexNumber");
 
 ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
+
+ALTER TABLE "HELD-ITEMS" ADD CONSTRAINT "fk_HELD-ITEMS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
+
+ALTER TABLE "POPULAR-MOVESETS" ADD CONSTRAINT "fk_POPULAR-MOVESETS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
 REFERENCES "POKEDEX" ("nationalDexNumber");
 
