@@ -12,7 +12,7 @@ evolvesFrom VARCHAR
 STATS
 --
 nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
-name VARCHAR
+name VARCHAR PK
 baseStat INT
 healthPoints INT
 attack INT
@@ -24,7 +24,7 @@ speed INT
 ABILITIES
 --
 nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
-name VARCHAR
+name VARCHAR PK
 ability1 VARCHAR
 ability2 VARCHAR
 ability3 VARCHAR
@@ -32,6 +32,7 @@ hiddenAbility VARCHAR
 
 HELD-ITEMS
 --
+nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
 name VARCHAR PK
 item1 VARCHAR
 item2 VARCHAR
@@ -39,6 +40,7 @@ item3 VARCHAR
 
 POPULAR-MOVESETS
 --
+nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
 name VARCHAR PK
 nature VARCHAR
 ability VARCHAR
