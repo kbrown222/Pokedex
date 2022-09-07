@@ -1,13 +1,18 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
+DROP table if exists "STATS";
+DROP table if exists "ABILITIES";
+DROP table if exists "HELD-ITEMS";
+DROP table if exists "POPULAR-MOVESETS";
+DROP table if exists "POKEDEX";
 
 CREATE TABLE "POKEDEX" (
-    "nationalDexNumber" INT   NOT NULL,
+    "nationalDexNumber" INT NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "description" VARCHAR   NOT NULL,
-    "weight" INT   NOT NULL,
-    "height" INT   NOT NULL,
+    "weight" INT,
+    "height" INT,
     "type1" VARCHAR   NOT NULL,
     "type2" VARCHAR   NOT NULL,
     "evolvesFrom" VARCHAR   NOT NULL,
@@ -31,6 +36,10 @@ CREATE TABLE "STATS" (
      )
 );
 
+ALTER TABLE "STATS" ADD CONSTRAINT "fk_STATS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
+
+
 CREATE TABLE "ABILITIES" (
     "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
@@ -43,6 +52,10 @@ CREATE TABLE "ABILITIES" (
      )
 );
 
+ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
+
+
 CREATE TABLE "HELD-ITEMS" (
     "nationalDexNumber" INT   NOT NULL,
     "name" VARCHAR   NOT NULL,
@@ -53,6 +66,10 @@ CREATE TABLE "HELD-ITEMS" (
         "nationalDexNumber","name"
      )
 );
+
+ALTER TABLE "HELD-ITEMS" ADD CONSTRAINT "fk_HELD-ITEMS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
+REFERENCES "POKEDEX" ("nationalDexNumber");
+
 
 CREATE TABLE "POPULAR-MOVESETS" (
     "nationalDexNumber" INT   NOT NULL,
@@ -69,15 +86,13 @@ CREATE TABLE "POPULAR-MOVESETS" (
      )
 );
 
-ALTER TABLE "STATS" ADD CONSTRAINT "fk_STATS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
-ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
-ALTER TABLE "HELD-ITEMS" ADD CONSTRAINT "fk_HELD-ITEMS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
 ALTER TABLE "POPULAR-MOVESETS" ADD CONSTRAINT "fk_POPULAR-MOVESETS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
 REFERENCES "POKEDEX" ("nationalDexNumber");
+
+CREATE TABLE "BRIDGE_POKEMON" (
+    "Ability" VARCHAR   NOT NULL,
+    "Hidden" VARCHAR   NOT NULL,
+    "Pokemon" VARCHAR   NOT NULL
+);
+ 
 
