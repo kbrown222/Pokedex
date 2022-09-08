@@ -23,29 +23,7 @@ speed INT
 
 ABILITIES
 --
-nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
-name VARCHAR PK
-ability1 VARCHAR
-ability2 VARCHAR
-ability3 VARCHAR
-hiddenAbility VARCHAR
+Ability VARCHAR
+Hidden VARCHAR
+Pokemon VARCHAR
 
-HELD-ITEMS
---
-nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
-name VARCHAR PK
-item1 VARCHAR
-item2 VARCHAR
-item3 VARCHAR
-
-POPULAR-MOVESETS
---
-nationalDexNumber INT PK FK - POKEDEX.nationalDexNumber
-name VARCHAR PK
-nature VARCHAR
-ability VARCHAR
-heldItem VARCHAR
-move1 VARCHAR
-move2 VARCHAR
-move3 VARCHAR
-move4 VARCHAR
