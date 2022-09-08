@@ -3,19 +3,17 @@
 
 DROP table if exists "STATS";
 DROP table if exists "ABILITIES";
-DROP table if exists "HELD-ITEMS";
-DROP table if exists "POPULAR-MOVESETS";
 DROP table if exists "POKEDEX";
 
 CREATE TABLE "POKEDEX" (
     "nationalDexNumber" INT NOT NULL UNIQUE,
     "name" VARCHAR   NOT NULL,
     "description" VARCHAR   NOT NULL,
-    "weight" INT,
-    "height" INT,
+    "weight" FLOAT,
+    "height" FLOAT,
     "type1" VARCHAR   NOT NULL,
     "type2" VARCHAR   NOT NULL,
-    "evolvesFrom" VARCHAR   NOT NULL,
+    "evolvesFrom" VARCHAR,
     CONSTRAINT "pk_POKEDEX" PRIMARY KEY (
         "nationalDexNumber","name"
      )
@@ -41,55 +39,6 @@ REFERENCES "POKEDEX" ("nationalDexNumber");
 
 
 CREATE TABLE "ABILITIES" (
-    "nationalDexNumber" INT   NOT NULL,
-    "name" VARCHAR   NOT NULL,
-    "ability1" VARCHAR   NOT NULL,
-    "ability2" VARCHAR   NOT NULL,
-    "ability3" VARCHAR   NOT NULL,
-    "hiddenAbility" VARCHAR   NOT NULL,
-    CONSTRAINT "pk_ABILITIES" PRIMARY KEY (
-        "nationalDexNumber","name"
-     )
-);
-
-ALTER TABLE "ABILITIES" ADD CONSTRAINT "fk_ABILITIES_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
-
-CREATE TABLE "HELD-ITEMS" (
-    "nationalDexNumber" INT   NOT NULL,
-    "name" VARCHAR   NOT NULL,
-    "item1" VARCHAR   NOT NULL,
-    "item2" VARCHAR   NOT NULL,
-    "item3" VARCHAR   NOT NULL,
-    CONSTRAINT "pk_HELD-ITEMS" PRIMARY KEY (
-        "nationalDexNumber","name"
-     )
-);
-
-ALTER TABLE "HELD-ITEMS" ADD CONSTRAINT "fk_HELD-ITEMS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
-
-CREATE TABLE "POPULAR-MOVESETS" (
-    "nationalDexNumber" INT   NOT NULL,
-    "name" VARCHAR   NOT NULL,
-    "nature" VARCHAR   NOT NULL,
-    "ability" VARCHAR   NOT NULL,
-    "heldItem" VARCHAR   NOT NULL,
-    "move1" VARCHAR   NOT NULL,
-    "move2" VARCHAR   NOT NULL,
-    "move3" VARCHAR   NOT NULL,
-    "move4" VARCHAR   NOT NULL,
-    CONSTRAINT "pk_POPULAR-MOVESETS" PRIMARY KEY (
-        "nationalDexNumber","name"
-     )
-);
-
-ALTER TABLE "POPULAR-MOVESETS" ADD CONSTRAINT "fk_POPULAR-MOVESETS_nationalDexNumber" FOREIGN KEY("nationalDexNumber")
-REFERENCES "POKEDEX" ("nationalDexNumber");
-
-CREATE TABLE "BRIDGE_POKEMON" (
     "Ability" VARCHAR   NOT NULL,
     "Hidden" VARCHAR   NOT NULL,
     "Pokemon" VARCHAR   NOT NULL
